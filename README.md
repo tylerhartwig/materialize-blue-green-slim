@@ -40,12 +40,13 @@ dbt run
 # Initialize blue-green deployment environment
 dbt run-operation deploy_init
 
-# Copy deployed state so we can do a slim deployment later
-mkdir -p state
-cp target/manifest.json state/manifest.json
 
 # Deploy all models to blue-green environment
 dbt run --vars 'deploy: True'
+
+# Copy deployed state so we can do a slim deployment later
+mkdir -p state
+cp target/manifest.json state/manifest.json
 
 # Make an arbitrary change to bar.sql then continue
 
